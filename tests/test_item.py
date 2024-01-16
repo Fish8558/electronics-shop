@@ -2,6 +2,8 @@
 from src.item import Item
 import pytest
 from config import CSV_PATH
+from src.phone import Phone
+
 
 @pytest.fixture
 def test_item():
@@ -49,3 +51,13 @@ def test_string_to_number(test_item):
 def test_instantiate_from_csv(test_item):
     test_item.instantiate_from_csv(CSV_PATH)
     assert len(test_item.all) == 5
+
+def test_add(item, phone) -> None:
+    """ Тест метода __add__
+    :param item Экземпляр класса item и дочерний экземпляр класс phone
+    """
+    item1 = Item("test", 10, 10)
+    phone1 = Phone('fly', 15000.0, 15, 1)
+    assert isinstance(phone1, item1.__class__) == True
+    assert item1 + phone1 == 25
+    assert phone1 + phone1 == 30
