@@ -1,5 +1,4 @@
 from src.item import Item
-from src.phone import Phone
 from config import CSV_PATH
 
 if __name__ == '__main__':
