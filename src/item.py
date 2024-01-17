@@ -53,7 +53,7 @@ class Item:
     def instantiate_from_csv(cls, patch_file):
         """класс-метод, инициализирующий экземпляры класса Item"""
         cls.all.clear()
-        with open(ROOT_DIR + '/' + patch_file, encoding='cp1251') as file:
+        with open(patch_file, encoding="windows-1251") as file:
             file_csv = csv.DictReader(file)
             for i in file_csv:
                 name = i['name']
