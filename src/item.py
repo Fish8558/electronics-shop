@@ -32,9 +32,9 @@ class Item:
         """
         Сложение экземпляров одного класса
         """
-        if isinstance(other, self.__class__):
-            return self.quantity + other.quantity
-        return None
+        if not isinstance(other, self.__class__):
+            raise ValueError('Складывать можно только обьекты Item и Phone.')
+        return self.quantity + other.quantity
 
     @property
     def name(self):
