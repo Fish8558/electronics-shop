@@ -2,6 +2,7 @@
 from src.item import Item
 import pytest
 from config import CSV_PATH
+from src.keyboard import Keyboard
 from src.phone import Phone
 
 
@@ -61,3 +62,8 @@ def test_add(item, phone) -> None:
     assert isinstance(phone1, item1.__class__) == True
     assert item1 + phone1 == 25
     assert phone1 + phone1 == 30
+
+
+def test_():
+    kb = Keyboard('Dark Project KD87A', 9600, 5)
+    assert str(kb) == "Dark Project KD87A"
