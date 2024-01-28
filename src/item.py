@@ -1,5 +1,6 @@
 import csv
 from config import ROOT_DIR
+from src.csv_err import InstantiateCSVError
 
 
 class Item:
@@ -53,13 +54,17 @@ class Item:
     def instantiate_from_csv(cls, patch_file):
         """класс-метод, инициализирующий экземпляры класса Item"""
         cls.all.clear()
-        with open(patch_file, encoding="windows-1251") as file:
-            file_csv = csv.DictReader(file)
-            for i in file_csv:
-                name = i['name']
-                price = float(i['price'])
-                quantity = int(i['quantity'])
-                cls(name, price, quantity)
+        try:
+            with open(patch_file, encoding="windows-1251") as file:
+                file_csv = csv.DictReader(file)
+                for i in file_csv:
+                    name = i['name']
+                    price = float(i['price'])
+                    quantity = int(i['quantity'])
+                    cls(name, price, quantity)
+        except KeyError:
+            raise InstantiateCSVError('Файл поврежден')
+        except FileNotFoundError('Нет такого файла')
 
     @staticmethod
     def string_to_number(string):
